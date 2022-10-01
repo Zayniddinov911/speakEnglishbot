@@ -27,6 +27,10 @@ async def interpreter(message: types.Message):
     if len(message.text.split()) > 2:
         dest = 'ru' if lang == 'en' else 'en'
         await message.reply(translator.translate(message.text, dest).text)
+    lang2 = translator.detect(message.text).lang
+    if len(message.text.split()) < 2:
+        dest2 = 'ru' if lang2 == 'en' else 'en'
+        await message.reply(translator.translate(message.text, dest2).text)
 
 
 if __name__ == '__main__':
